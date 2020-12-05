@@ -15,7 +15,15 @@ class IdCheck
 
   def valid?(id)
     list = ["byr", 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
-    (list - id.keys).size == 0
+    (list - id.keys).size == 0 &&
+      (1920..2002).include?(id['byr'].to_i) &&
+      (2010..2020).include?(id['iyr'].to_i) &&
+      (2020..2030).include?(id['eyr'].to_i) &&
+      id['hgt'].match?(/^(1([5-8][0-9]|9[0-3])cm$)|(59|6[0-9]|7[0-3])in$/) &&
+      id['hcl'].match?(/^#[0-9a-f]{6}$/) &&
+      id['ecl'].match?(/^amb|blu|brn|gry|grn|hzl|oth$/) &&
+      id['pid'].match?(/^[0-9]{9}$/)
+
   end
 end
 
