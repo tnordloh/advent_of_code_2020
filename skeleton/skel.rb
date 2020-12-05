@@ -3,7 +3,7 @@
 class Skel
   attr_reader :input
   def initialize
-    @input = File.read('input.txt')
+    @input = File.open('input.txt', 'r')
   end
 
   def parsed
