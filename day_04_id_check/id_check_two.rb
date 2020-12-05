@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class IdCheck
+class IdCheckTwo
   attr_reader :input
   def initialize
     @input = File.open('input.txt', 'r')
@@ -28,6 +28,6 @@ class IdCheck
 end
 
 if $PROGRAM_NAME == __FILE__
-  id_check = IdCheck.new.parsed
+  id_check = IdCheckTwo.new.parsed
   p id_check
 end
