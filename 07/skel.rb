@@ -10,11 +10,8 @@ class Skel
     @container ||= []
     @parsed ||= input.each.each_with_object(Hash.new { |h, k| h[k] = [] }) do |line, acc|
       container, contained = line.strip.gsub('.', '').gsub(/ bags?/, '').split(' contain ')
-      # p container
-      # p contained.split(/, /).map {|bag| bag.sub(/\d+ /, '') }
       contained = contained.split(/, /).map {|bag| bag.sub(/\d+ /, '') }
       @container << container
-
       contained.each do |bag|
         acc[bag] << container
       end

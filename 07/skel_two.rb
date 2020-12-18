@@ -2,8 +2,8 @@
 
 class SkelTwo
   attr_reader :input
-  def initialize
-    @input = File.open('input.txt', 'r')
+  def initialize(file = 'input.txt')
+    @input = File.open(file, 'r')
   end
 
   def parsed
@@ -21,15 +21,17 @@ class SkelTwo
     end
   end
 
-  def how_many_bags?(bag, count)
+  def how_many_bags?(bag, count = 0)
     return count if parsed[bag].empty?
 
     count + parsed[bag].sum { |child, child_count|
-      count * how_many_bags?(child, child_count)
+      [count, 1].max * how_many_bags?(child, child_count)
     }
   end
 end
 
 if $PROGRAM_NAME == __FILE__
-  p SkelTwo.new.how_many_bags?("shiny gold", 1) - 1
+  p SkelTwo.new('input2.txt').how_many_bags?("shiny gold", 0)
+  p SkelTwo.new('input3.txt').how_many_bags?("shiny gold", 0)
+  p SkelTwo.new.how_many_bags?("shiny gold", 0)
 end
