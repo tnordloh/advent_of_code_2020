@@ -12,8 +12,7 @@ class SkelTwo
       container, contained = line.strip.gsub('.', '').gsub(/ bags?/, '').split(' contain ')
 
       contained.split(/, /).map {|bag|
-        number, *bag_name = bag.split(' ')
-        bag_name = bag_name.join(' ')
+        number, bag_name = bag.split(' ', 2)
         if bag_name != 'other'
           acc[container].merge!({bag_name => number.to_i})
         end
